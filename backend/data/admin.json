@@ -1,0 +1,11 @@
+[
+    {
+        "firstName":"Aniket",
+        "lastName":"Bobade",
+        "email":"bobadeaniket5@gmail.com",
+        "password":"cc37560a479453ae67135692f7d3cd322d0cea035cab0d172b70ab51a768d8ef675412ffa0ac002e24aa2b7d20a5e9d01f32617273b75125b92fc09b63c1e9da",
+        "userType":"ADMIN",
+        "status":"ACTIVE"
+
+    }
+]

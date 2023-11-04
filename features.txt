@@ -1,0 +1,8 @@
+Backend Complete
+Auth 
+user, field, subject, document
+
+frontend home page
+
+features 
+add rating on documents

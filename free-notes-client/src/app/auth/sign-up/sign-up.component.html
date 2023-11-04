@@ -1,0 +1,20 @@
+<form [formGroup]="signUp" (ngSubmit)="register()">
+    <div>
+        <label for="">email: </label>
+        <input type="email" formControlName="email">
+        <div *ngIf="signUp.get('email')?.invalid && signUp.get('email')?.touched">email is required</div>
+    </div>
+    <div>
+        <label for="">First Name: </label>
+        <input type="text" formControlName="firstName">
+        <div *ngIf="signUp.get('firstName')?.invalid && signUp.get('firstName')?.touched">firstName is required</div>
+    </div>
+    <div>
+        <label for="">Last Name: </label>
+        <input type="text" formControlName="lastName">
+        <div *ngIf="signUp.get('lastName')?.invalid && signUp.get('lastName')?.touched">lastName is required</div>
+    </div>
+    
+   
+    <button type="submit">Register</button>
+</form>
