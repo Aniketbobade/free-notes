@@ -6,5 +6,3 @@ frontend home page
 
 features 
 add rating on documents - backend remaining 
-
-added by AniketBobade
