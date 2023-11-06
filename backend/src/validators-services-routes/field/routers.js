@@ -4,6 +4,6 @@ const service = require("./service");
 const validator= require('./validator');
 
 router.post('/user/create-field',isAuth,validator.createField,service.createField);
-router.get('/get-fields',service.getField);
+router.get('/get-fields',service.getFields);
 
 module.exports= router;
