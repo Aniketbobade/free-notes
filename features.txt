@@ -6,3 +6,5 @@ frontend home page
 
 features 
 add rating on documents - backend remaining 
+
+new features will be added soon
