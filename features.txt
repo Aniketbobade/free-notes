@@ -7,4 +7,4 @@ frontend home page
 features 
 add rating on documents - backend remaining 
 
-new add
+new 
