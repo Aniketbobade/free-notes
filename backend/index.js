@@ -8,4 +8,4 @@ require('./src/routers/app')(app);
 require('./src/routers/routes')(app);
 
 
-app.listen(config.PORT, () => console.log('Example app listening on port ' + config.PORT));
+app.listen(config.PORT, () => console.log('Free Notes app listening on port ' + config.PORT));

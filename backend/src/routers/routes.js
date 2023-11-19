@@ -5,6 +5,8 @@ module.exports = (app) => {
      require("../validators-services-routes/field/routers"),
      require("../validators-services-routes/subject/routes"),
      require("../validators-services-routes/documents/routes"),
+     require("../validators-services-routes/likes/routes"),
+     require("../validators-services-routes/reviews/routes"),
     ]);
     app.get("/", (req, res) => {
       res.send("Hello from server");

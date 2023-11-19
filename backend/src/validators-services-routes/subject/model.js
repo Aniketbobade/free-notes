@@ -7,9 +7,8 @@ const subject= new Schema({
     desc:{type:String,required:true},
     tags:[{type:String}],
     field:{type:ObjectId,ref:"field",required:true},
-    created_at:{type:Date,default:Date.now},
-    updated_at:{type:Date,default:Date.now}
-});
+   
+},{timestamps:true});
 
 const subjectModel = mongoose.model('subject',subject);
 

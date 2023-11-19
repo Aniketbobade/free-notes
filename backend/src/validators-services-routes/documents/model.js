@@ -9,9 +9,7 @@ const documentSchema= new Schema({
     file_type:{type:String,required:true},
     addedBy:{type:ObjectId, ref:'User', required:true},
     subject:{type:ObjectId, ref:'Subject', required:true},
-    created_at:{type:Date, default:Date.now},
-    updated_at:{type:Date, default:Date.now},
-});
+},{timestamps:true});
 
 const Document = mongoose.model('Document',documentSchema);
 

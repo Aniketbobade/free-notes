@@ -5,7 +5,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const fieldSchema= new Schema({
     name:{type:String,required:true, unique:true},
     desc:{type:String,required:true},
-});
+},{timestamps:true});
 
 const Field = mongoose.model('Field',fieldSchema);
 

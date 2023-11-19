@@ -2,6 +2,8 @@ const service={};
 const fileUploader = require('../../helper/fileUploader');
 const config = require("../../config/development");
 const Document = require('./model');
+const statusCodes = require('../../response/statusCode');
+const messages = require('../../response/message');
 service.addDocument= async(req, res)=>{
     try {
         req.body.addedBy= req.user._id;
@@ -19,11 +21,17 @@ service.addDocument= async(req, res)=>{
         req.body.file_url= fileUpload.secure_url;
         // console.log(fileUpload);
         const document= await Document.create(req.body);
-        return res.status(200).json({message:"Document added successfully",document});
+        return res.status(201).json({
+            status:statusCodes.CREATED,
+            message:messages.resourceCreatedSuccessfully,
+            result:document,
+          });
     }  
      catch (error) {
         console.log(error);
-        return res.status(500).json({error:error.message});
+        return res
+      .status(500)
+      .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
     }
 }
 
@@ -31,15 +39,19 @@ service.getDocumentBySubject= async(req, res)=>{
     try {
         const subjectId= req.params.id;
         const documents = await Document.find({subject:subjectId}).populate('addedBy').lean();
+        if (!documents.length) {
+            return res.status(204).json({ status:statusCodes.NO_CONTENT,message: messages.resourceNotFound });
+        }
         return res.status(200).json({
-            success: true,
-            documents,
-        })
+            status:statusCodes.OK,
+            message:messages.resourceRetrieveSuccessfully,
+            result:documents,
+          });
     }
      catch (error) {
-        return res.status(500).json({   
-            message: error.message,
-        });
+        return res
+      .status(500)
+      .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
     }
 }
  

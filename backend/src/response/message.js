@@ -18,6 +18,8 @@ const messages = {
     invalidEmail:"Invalid email",
     passwordResetLink:"Password reset link sent successfully",
     fieldRequired:"### Field required",
+    Liked:"like Added",
+    UnLiked:"like Removed"
   };
   
   module.exports = messages;
