@@ -38,8 +38,11 @@
       <thead>
         <th>Name</th>
         <th>Description</th>
-        <th>link</th>
-        <th>added By</th>
+        <th>Link</th>
+        <th>Added By</th>
+        <th>Likes</th>
+        <th>Rating</th>
+        <th>Details</th>
       </thead>
       <tbody>
         <tr>
@@ -47,6 +50,9 @@
           <td>{{ document.desc }}</td>
           <td><a href="{{ document.file_url }}" target="_blank">click here</a></td>
           <td> {{document.addedBy.email}} </td>
+          <td>{{documents.like}}</td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>

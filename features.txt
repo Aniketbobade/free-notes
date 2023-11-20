@@ -5,3 +5,6 @@ frontend home page
 features 
 add rating on documents - backend remaining 
 new 
+
+
+For getting all documents from subject ID use aggregation pipeline which return all data at time.

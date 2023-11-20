@@ -7,6 +7,7 @@ module.exports = (app) => {
      require("../validators-services-routes/documents/routes"),
      require("../validators-services-routes/likes/routes"),
      require("../validators-services-routes/reviews/routes"),
+     require("../validators-services-routes/ratings/routes"),
     ]);
     app.get("/", (req, res) => {
       res.send("Hello from server");
