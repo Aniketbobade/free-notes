@@ -4,6 +4,8 @@ const config = require("../../config/development");
 const Document = require('./model');
 const statusCodes = require('../../response/statusCode');
 const messages = require('../../response/message');
+const Subject = require('../subject/model');
+const ObjectId = require("mongoose").Types.ObjectId;
 service.addDocument= async(req, res)=>{
     try {
         req.body.addedBy= req.user._id;
@@ -38,7 +40,79 @@ service.addDocument= async(req, res)=>{
 service.getDocumentBySubject= async(req, res)=>{
     try {
         const subjectId= req.params.id;
-        const documents = await Document.find({subject:subjectId}).populate('addedBy').lean();
+        const documents = await Subject.aggregate([
+            {
+              '$match': {
+                '_id': new ObjectId(subjectId)
+              }
+            }, {
+              '$lookup': {
+                'from': 'documents', 
+                'localField': '_id', 
+                'foreignField': 'subject', 
+                'as': 'document'
+              }
+            }, {
+              '$unwind': {
+                'path': '$document', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$lookup': {
+                'from': 'likes', 
+                'localField': 'document._id', 
+                'foreignField': 'documentId', 
+                'as': 'likes'
+              }
+            }, {
+              '$lookup': {
+                'from': 'ratings', 
+                'localField': 'document._id', 
+                'foreignField': 'documentId', 
+                'as': 'ratings'
+              }
+            }, {
+              '$unwind': {
+                'path': '$ratings', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$lookup': {
+                'from': 'users', 
+                'localField': 'document.addedBy', 
+                'foreignField': '_id', 
+                'as': 'addedBy'
+              }
+            }, {
+              '$unwind': {
+                'path': '$addedBy', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$project': {
+                'documentName': '$document.name', 
+                'documentDesc': '$document.desc', 
+                'fileType': '$document.fileType', 
+                'file_url': '$document.file_url', 
+                'addedBy': '$addedBy.email', 
+                'avgRating': {
+                  '$avg': '$ratings.rating'
+                }, 
+                'totalLikes': {
+                  '$cond': {
+                    'if': {
+                      '$isArray': '$likes'
+                    }, 
+                    'then': {
+                      '$size': '$likes'
+                    }, 
+                    'else': 'NA'
+                  }
+                }
+              }
+            }
+          ])
+
         if (!documents.length) {
             return res.status(204).json({ status:statusCodes.NO_CONTENT,message: messages.resourceNotFound });
         }

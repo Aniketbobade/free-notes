@@ -7,7 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class ApiService {
 
-  private apiBaseUrl: string = 'http://15.206.209.204:3000/api'; // Replace with your API base URL
+  private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
 
   constructor(private http: HttpClient,private localStorage: LocalStorageService) {}
   token:string="";

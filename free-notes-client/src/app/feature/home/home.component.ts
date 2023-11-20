@@ -42,15 +42,7 @@ export class HomeComponent implements OnInit {
     console.log(id);
     this.apiService.get(`/subject-document/${id}`).subscribe((res: any) => {
       console.log(res);
-      res.result.forEach((document: any) => {
-        console.log(document);
-        this.apiService
-          .get(`/documentLike/${document._id}`)
-          .subscribe((res: any) => {
-            document.likes = res.count;
-          });
-      });
-      console.log(this.documents);
+      this.documents=res.result;
     });
   }
 
