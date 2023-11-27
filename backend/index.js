@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
+import serverless from "serverless-http";
 const config= require('./src/config/development');
 require('./src/dbConnection/mongoDbConnect');
 const cloudinary= require("./src/config/cloudinary");
 cloudinary.cloudinaryConnect();
 require('./src/routers/app')(app);
-require('./src/routers/routes')(app);
-
-
+const api = require('./src/routers/routes')(app);
+export const handler = serverless(api);
 app.listen(config.PORT, () => console.log('Free Notes app listening on port ' + config.PORT));

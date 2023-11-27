@@ -90,6 +90,7 @@ service.getDocumentBySubject= async(req, res)=>{
               }
             }, {
               '$project': {
+                'documentId':'$document._id',
                 'documentName': '$document.name', 
                 'documentDesc': '$document.desc', 
                 'fileType': '$document.fileType', 
@@ -127,6 +128,138 @@ service.getDocumentBySubject= async(req, res)=>{
       .status(500)
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
     }
+}
+
+service.getDocumentById= async(req, res)=>{
+  try {
+    const documentId= req.params.id;
+    const document = await Document.aggregate([
+      {
+        '$match': {
+          '_id': new ObjectId(documentId)
+        }
+      }, {
+        '$lookup': {
+          'from': 'likes', 
+          'localField': '_id', 
+          'foreignField': 'documentId', 
+          'as': 'likes'
+        }
+      }, {
+        '$lookup': {
+          'from': 'ratings', 
+          'localField': '_id', 
+          'foreignField': 'documentId', 
+          'as': 'rating'
+        }
+      }, {
+        '$lookup': {
+          'from': 'users', 
+          'localField': 'addedBy', 
+          'foreignField': '_id', 
+          'as': 'addedBy'
+        }
+      }, {
+        '$unwind': {
+          'path': '$addedBy', 
+          'preserveNullAndEmptyArrays': true
+        }
+      }, {
+        '$lookup': {
+          'from': 'reviews', 
+          'localField': '_id', 
+          'foreignField': 'documentId', 
+          'as': 'reviews'
+        }
+      }, {
+        '$project': {
+          'name': 1, 
+          'desc': 1, 
+          'file_url': 1, 
+          'file_type': 1, 
+          'added_by': {
+            'user_id': '$addedBy._id', 
+            'user_name': {
+              '$concat': [
+                '$addedBy.firstName', ' ', '$addedBy.lastName'
+              ]
+            }, 
+            'user_email': '$addedBy.email'
+          }, 
+          'likes': {
+            '$cond': {
+              'if': {
+                '$isArray': '$likes'
+              }, 
+              'then': {
+                '$filter': {
+                  'input': '$likes', 
+                  'as': 'like', 
+                  'cond': {
+                    '$eq': [
+                      '$$like.likeBy', '$addedBy._id'
+                    ]
+                  }
+                }
+              }, 
+              'else': []
+            }
+          }, 
+          'ratings': {
+            '$cond': {
+              'if': {
+                '$isArray': '$rating'
+              }, 
+              'then': {
+                '$filter': {
+                  'input': '$rating', 
+                  'as': 'rate', 
+                  'cond': {
+                    '$eq': [
+                      '$$rate.userId', '$addedBy._id'
+                    ]
+                  }
+                }
+              }, 
+              'else': []
+            }
+          }, 
+          'reviews': {
+            '$cond': {
+              'if': {
+                '$isArray': '$reviews'
+              }, 
+              'then': {
+                '$filter': {
+                  'input': '$reviews', 
+                  'as': 'review', 
+                  'cond': {
+                    '$eq': [
+                      '$$review.userId', '$addedBy._id'
+                    ]
+                  }
+                }
+              }, 
+              'else': []
+            }
+          }
+        }
+      }
+    ])
+    if (!document) {
+      return res.status(204).json({ status:statusCodes.NO_CONTENT,message: messages.resourceNotFound });
+    }
+    return res.status(200).json({
+        status:statusCodes.OK,
+        message:messages.resourceRetrieveSuccessfully,
+        result:document,
+    });
+  } catch (error) {
+    console.log(error);
+        return res
+      .status(500)
+      .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
+  }
 }
  
 

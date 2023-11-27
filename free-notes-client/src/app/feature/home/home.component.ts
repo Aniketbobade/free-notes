@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
 
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
   getField: FormGroup;
   constructor(
     private apiService: ApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.getField = this.formBuilder.group({
       id: ['', Validators.required],
@@ -46,7 +48,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
+  navigateToOtherPage(documentId:string){
+    this.router.navigate(['/document-details'], { queryParams: { documentId } });
+  }
 
   // getRating(documentId:string){
   //   this.apiService.get(`/documentLike/${documentId}`).subscribe((res:any)=>{

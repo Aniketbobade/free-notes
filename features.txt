@@ -8,3 +8,5 @@ new
 
 
 For getting all documents from subject ID use aggregation pipeline which return all data at time.
+
+use zod for validation

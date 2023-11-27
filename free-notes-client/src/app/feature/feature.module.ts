@@ -6,11 +6,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { DocumentDetailsComponent } from './document-details/document-details.component';
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    DocumentDetailsComponent
   ],
   imports: [
     CommonModule,
