@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const mailService = require("./src/helper/emailService");
-const serverStartMail = require("./src/mail-template/serverStartMail");
 const config = require("./src/config/development");
 const dbConnect = require("./src/dbConnection/mongoDbConnect");
 const cloudinary = require("./src/config/cloudinary");
@@ -21,11 +20,11 @@ dbConnect()
     let cHours = currentDate.getHours();
     let cMinutes = currentDate.getMinutes();
     let cSeconds = currentDate.getSeconds();
-    //  mailService.sendInviteMail(
-    //   "bobadeaniket5@gmail.com",
-    //   "sever started",
-    //   `${cDay + "/" + cMonth + "/" + cYear + " " + cHours + ":" + cMinutes + ":" + cSeconds}`
-    // );
+     mailService.sendInviteMail(
+      "bobadeaniket5@gmail.com",
+      "sever started",
+      ` server started at ${cDay + "/" + cMonth + "/" + cYear + " " + cHours + ":" + cMinutes + ":" + cSeconds}`
+    );
   })
   .catch((err) => {
     console.log(err);
