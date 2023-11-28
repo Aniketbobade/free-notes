@@ -14,16 +14,10 @@ dbConnect()
       console.log("Free Notes app listening on port " + config.PORT)
     );
     let currentDate = new Date();
-    let cDay = currentDate.getDate();
-    let cMonth = currentDate.getMonth() + 1;
-    let cYear = currentDate.getFullYear();
-    let cHours = currentDate.getHours();
-    let cMinutes = currentDate.getMinutes();
-    let cSeconds = currentDate.getSeconds();
      mailService.sendInviteMail(
       "bobadeaniket5@gmail.com",
       "sever started",
-      ` server started at ${cDay + "/" + cMonth + "/" + cYear + " " + cHours + ":" + cMinutes + ":" + cSeconds}`
+      ` server started at ${currentDate.toUTCString()}`
     );
   })
   .catch((err) => {
