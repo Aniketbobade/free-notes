@@ -7,12 +7,15 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { DocumentDetailsComponent } from './document-details/document-details.component';
+import { SafeUrl } from '@angular/platform-browser';
+import { SafeUrlPipe } from '../pipes/safe-url.pipe';
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     NavbarComponent,
-    DocumentDetailsComponent
+    DocumentDetailsComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,

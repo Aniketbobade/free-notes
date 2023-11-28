@@ -40,19 +40,15 @@
         <th>Description</th>
         <th>Link</th>
         <th>Added By</th>
-        <th>Likes</th>
-        <th>Rating</th>
         <th>Details</th>
       </thead>
       <tbody>
         <tr>
-          <td>{{ document.documentName }}</td>
-          <td>{{ document.documentDesc }}</td>
+          <td>{{ document.name }}</td>
+          <td>{{ document.desc }}</td>
           <td><a href="{{ document.file_url }}" target="_blank">click here</a></td>
-          <td> {{document.addedBy}} </td>
-          <td>{{document.totalLikes}}</td>
-          <td>{{document.avgRating}}</td>
-          <td><button (click)="navigateToOtherPage(document.documentId)">click here</button></td>
+          <td> {{document.addedBy.email}} </td>
+          <td><button (click)="navigateToOtherPage(document._id)">click here</button></td>
         </tr>
       </tbody>
     </table>

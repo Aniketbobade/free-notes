@@ -1,0 +1,165 @@
+/**
+ * specifications: The fields to
+ *   include or exclude.
+ */
+{
+  name: 1,
+  desc: 1,
+  file_url: 1,
+  file_type: 1,
+  added_by: {
+    user_id: "$addedBy._id",
+    user_name: {
+      $concat: [
+        "$addedBy.firstName",
+        " ",
+        "$addedBy.lastName",
+      ],
+    },
+    user_email: "$addedBy.email",
+  },
+  likes: {
+    $cond: {
+      if: {
+        $isArray: "$likes",
+      },
+      // Check if 'likes' is an array
+      then: {
+        $filter: {
+          input: "$likes",
+          as: "like",
+          cond: {
+            $eq: [
+              "$$like.likeBy",
+              "$addedBy._id",
+            ],
+          },
+        },
+      },
+      else: [], // If 'likes' is not an array, return an empty array or handle as appropriate
+    },
+  },
+
+  ratings: {
+    $cond: {
+      if: {
+        $isArray: "$rating",
+      },
+      // Check if 'rating' is an array
+      then: {
+        $filter: {
+          input: "$rating",
+          as: "rate",
+          cond: {
+            $eq: [
+              "$$rate.userId",
+              "$addedBy._id",
+            ],
+          },
+        },
+      },
+      else: [], // If 'rating' is not an array, return an empty array or handle as appropriate
+    },
+  },
+
+  reviews: {
+    $cond: {
+      if: {
+        $isArray: "$reviews",
+      },
+      // Check if 'reviews' is an array
+      then: {
+        $filter: {
+          input: "$reviews",
+          as: "review",
+          cond: {
+            $eq: [
+              "$$review.userId",
+              "$addedBy._id",
+            ],
+          },
+        },
+      },
+      else: [], // If 'reviews' is not an array, return an empty array or handle as appropriate
+    },
+  },
+}
+
+
+
+
+
+
+const documents = await Subject.aggregate([
+            {
+              '$match': {
+                '_id': new ObjectId(subjectId)
+              }
+            }, {
+              '$lookup': {
+                'from': 'documents', 
+                'localField': '_id', 
+                'foreignField': 'subject', 
+                'as': 'document'
+              }
+            }, {
+              '$unwind': {
+                'path': '$document', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$lookup': {
+                'from': 'likes', 
+                'localField': 'document._id', 
+                'foreignField': 'documentId', 
+                'as': 'likes'
+              }
+            }, {
+              '$lookup': {
+                'from': 'ratings', 
+                'localField': 'document._id', 
+                'foreignField': 'documentId', 
+                'as': 'ratings'
+              }
+            }, {
+              '$unwind': {
+                'path': '$ratings', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$lookup': {
+                'from': 'users', 
+                'localField': 'document.addedBy', 
+                'foreignField': '_id', 
+                'as': 'addedBy'
+              }
+            }, {
+              '$unwind': {
+                'path': '$addedBy', 
+                'preserveNullAndEmptyArrays': true
+              }
+            }, {
+              '$project': {
+                'documentId':'$document._id',
+                'documentName': '$document.name', 
+                'documentDesc': '$document.desc', 
+                'fileType': '$document.fileType', 
+                'file_url': '$document.file_url', 
+                'addedBy': '$addedBy.email', 
+                'avgRating': {
+                  '$avg': '$ratings.rating'
+                }, 
+                'totalLikes': {
+                  '$cond': {
+                    'if': {
+                      '$isArray': '$likes'
+                    }, 
+                    'then': {
+                      '$size': '$likes'
+                    }, 
+                    'else': 'NA'
+                  }
+                }
+              }
+            }
+          ])

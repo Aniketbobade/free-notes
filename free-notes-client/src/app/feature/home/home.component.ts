@@ -31,30 +31,31 @@ export class HomeComponent implements OnInit {
   }
   searchSubject() {
     const id: string = this.getField.value;
-
-    this.apiService.get('/get-subjects', id).subscribe((res: any) => {
-      res.subjects.forEach((element: any) => {
-        this.getSubject.push(element);
-      });
-
-      console.log(this.getSubject);
-    });
+    this.apiService.get('/get-subjects', id).subscribe(
+      (res: any) => {
+        res.subjects.forEach((element: any) => {
+          this.getSubject.push(element);
+        });
+      },
+      (error: any) => {
+        // Error handling logic
+        console.error('An error occurred:', error.message);
+      }
+    );
   }
   loadDocuments(id: string) {
     console.log(id);
     this.apiService.get(`/subject-document/${id}`).subscribe((res: any) => {
       console.log(res);
-      this.documents=res.result;
+      this.documents = res.result;
     });
   }
 
-  navigateToOtherPage(documentId:string){
-    this.router.navigate(['/document-details'], { queryParams: { documentId } });
+  navigateToOtherPage(documentId: string) {
+    this.router.navigate(['/document-details'], {
+      queryParams: { documentId },
+    });
   }
 
-  // getRating(documentId:string){
-  //   this.apiService.get(`/documentLike/${documentId}`).subscribe((res:any)=>{
-  //     return res.count;
-  //   })
-  // }
+  getRating(documentId: string) {}
 }

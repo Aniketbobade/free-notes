@@ -3,5 +3,5 @@ const isAuth = require("../../middlewares/isAuth");
 const service = require("./service");
 const validator = require("./validator");
 router.post("/user/add-rating",isAuth, validator.addRating, service.addRating);
-router.get("/user/get-ratings/:documentId", service.getRatings);
+router.get("/get-ratings/:documentId", service.getRatings);
 module.exports= router;

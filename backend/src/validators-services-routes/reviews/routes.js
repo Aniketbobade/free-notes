@@ -4,6 +4,6 @@ const service = require("./service");
 const validator= require('./validator');
 
 router.post("/user/add-review",isAuth, service.addReview);
-router.get("/user/get-reviews/:documentId", service.getReviewByDocument);
+router.get("/get-reviews/:documentId", service.getReviewByDocument);
 
 module.exports= router;
