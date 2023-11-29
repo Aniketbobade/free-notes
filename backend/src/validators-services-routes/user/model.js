@@ -21,6 +21,7 @@ const userSchema = new Schema(
       required: true,
       default: "REGISTER",
     },
+    profileImage: { type: String, required:true, trim: true, default:'https://res.cloudinary.com/dgcofw79q/image/upload/v1701177663/profilePhoto/fugkdrfmdwam3ayzsgl2.webp' }
   },
   { timestamps: true }
 );

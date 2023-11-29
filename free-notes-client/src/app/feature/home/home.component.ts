@@ -30,12 +30,14 @@ export class HomeComponent implements OnInit {
     });
   }
   searchSubject() {
-    const id: string = this.getField.value;
+    if (this.getSubject.length > 0) {
+      this.getSubject = []; // Clear the array if it's not empty
+    }
+  
+    const id: string = this.getField.value.id; // Access the value of the 'id' field
     this.apiService.get('/get-subjects', id).subscribe(
       (res: any) => {
-        res.subjects.forEach((element: any) => {
-          this.getSubject.push(element);
-        });
+        this.getSubject = res.subjects; // Assign the subjects directly
       },
       (error: any) => {
         // Error handling logic

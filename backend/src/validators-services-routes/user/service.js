@@ -1,5 +1,6 @@
 const UserModel = require("./model");
 const Token = require("./tokenModel");
+const fileUploader = require('../../helper/fileUploader');
 config = require("../../config/development");
 const services = {};
 const mailService = require("../../helper/emailService");
@@ -12,6 +13,8 @@ const messages = require("../../response/message");
 services.createUser = async (req, res) => {
   try {
     const { email } = req.body;
+    console.log(req.body);
+    const profileImage = req.files.profilePhoto;
     const isAlreadyExist = await UserModel.findOne({ email });
     if (isAlreadyExist) {
       return res.status(400).json({
@@ -19,6 +22,8 @@ services.createUser = async (req, res) => {
         message:messages.isAlreadyExist
       });
     }
+    const fileUpload = await fileUploader.uploadDocument(profileImage, config.PROFILE_PHOTOS);
+    req.body.profileImage = fileUpload.secure_url;
     const user = await UserModel.create(req.body);
     const token = crypto.randomBytes(32).toString("hex");
     const inviteLink = `${config.FRONTEND_URL}/auth/register?inviteCode=${token}&id=${user._id}`;
@@ -50,7 +55,7 @@ services.setPassword = async (req, res) => {
       userId,
       { password: hashedPassword, status: "ACTIVE" },
       { new: true }
-    ).lean();
+    ).select('-password').lean();
     await Token.deleteOne({ userId, token });
     return res
       .status(200)

@@ -1,20 +1,20 @@
-<form [formGroup]="signUp" (ngSubmit)="register()">
+<form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
     <div>
-        <label for="">email: </label>
-        <input type="email" formControlName="email">
-        <div *ngIf="signUp.get('email')?.invalid && signUp.get('email')?.touched">email is required</div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
     </div>
     <div>
-        <label for="">First Name: </label>
-        <input type="text" formControlName="firstName">
-        <div *ngIf="signUp.get('firstName')?.invalid && signUp.get('firstName')?.touched">firstName is required</div>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required>
     </div>
     <div>
-        <label for="">Last Name: </label>
-        <input type="text" formControlName="lastName">
-        <div *ngIf="signUp.get('lastName')?.invalid && signUp.get('lastName')?.touched">lastName is required</div>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required>
     </div>
-    
-   
-    <button type="submit">Register</button>
-</form>
+    <div>
+      <label for="profilePhoto">Profile Photo:</label>
+      <input type="file" id="profilePhoto" name="profilePhoto" (change)="onFileSelected($event)">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  

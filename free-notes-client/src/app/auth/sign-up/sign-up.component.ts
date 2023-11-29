@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/common-service/api.service';
@@ -8,21 +9,35 @@ import { ApiService } from 'src/app/common-service/api.service';
 })
 export class SignUpComponent {
 
-  signUp:FormGroup= new FormGroup({});
- 
-  constructor(private formBuilder:FormBuilder,private apiService:ApiService){
+  user: any = {
+    email: '',
+    firstName: '',
+    lastName: ''
+  };
+  selectedFile: File | null = null;
+
+  constructor(private http: HttpClient, private apiService:ApiService) {}
+
+  onSubmit(form: any): void {
+    if (form.valid && this.selectedFile) {
+      const formData = new FormData();
+      formData.append('email', this.user.email);
+      formData.append('firstName', this.user.firstName);
+      formData.append('lastName', this.user.lastName);
+      formData.append('profilePhoto', this.selectedFile, this.selectedFile.name);
+      this.apiService.post('/signUp', formData, true)
+        .subscribe(
+          (response) => {
+            console.log('User created:', response);
+          },
+          (error) => {
+            console.error('Error uploading:', error);
+          }
+        );
+    }
   }
 
-  ngOnInit(): void {
-    this.signUp=this.formBuilder.group({
-      email:['', Validators.required],
-      firstName:['', Validators.required],
-      lastName:['', Validators.required],
-    })
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
   }
-  register(){
-    this.apiService.post('/signUp',this.signUp.value).subscribe((res: any)=>{
-      console.log(res)
-    })
-  }  
 }

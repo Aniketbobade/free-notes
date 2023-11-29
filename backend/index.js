@@ -14,11 +14,11 @@ dbConnect()
       console.log("Free Notes app listening on port " + config.PORT)
     );
     let currentDate = new Date();
-     mailService.sendInviteMail(
-      "bobadeaniket5@gmail.com",
-      "sever started",
-      ` server started at ${currentDate.toUTCString()}`
-    );
+    //  mailService.sendInviteMail(
+    //   "bobadeaniket5@gmail.com",
+    //   "sever started",
+    //   ` server started at ${currentDate.toUTCString()}`
+    // );
   })
   .catch((err) => {
     console.log(err);

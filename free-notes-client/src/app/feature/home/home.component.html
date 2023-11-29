@@ -13,16 +13,18 @@
   </form>
   <br>
   <br>
-  <div *ngFor="let subject of getSubject">
+  <div *ngIf="getSubject.length > 0">
     <h3>Subjects</h3>
     <table>
       <thead>
-        <th>Name</th>
-        <th>Description</th>
-        <th>tags</th>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>tags</th>
+        </tr>
       </thead>
       <tbody>
-        <tr (click)="loadDocuments(subject._id)" style="cursor: pointer;">
+        <tr *ngFor="let subject of getSubject" (click)="loadDocuments(subject._id)" style="cursor: pointer;">
           <td>{{ subject.name }}</td>
           <td>{{ subject.desc }}</td>
           <td>{{ subject.tags.join(', ') }}</td>

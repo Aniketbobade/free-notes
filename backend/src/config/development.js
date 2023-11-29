@@ -10,6 +10,7 @@ module.exports = {
     MAIL_PASS:process.env.MAIL_PASS,
     JWT_SECRET_KEY:process.env.JWT_SECRET_KEY,
     FOLDER:process.env.FOLDER,
+    PROFILE_PHOTOS:process.env.PROFILE_PHOTOS,
     API_KEY:process.env.API_KEY,
     API_SECRET:process.env.API_SECRET,
     CLOUD_NAME:process.env.CLOUD_NAME

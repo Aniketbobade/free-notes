@@ -10,7 +10,7 @@ service.addDocument= async(req, res)=>{
     try {
         req.body.addedBy= req.user._id;
         const file= req.files.document;
-        console.log("file details",file);
+       // console.log("file details",file);
         req.body.file_type = file.originalFilename.split('.')[1];
         if (!req.files || !req.files.document) {
             return res.status(400).json({ error: 'Missing required parameter - document this is error' });

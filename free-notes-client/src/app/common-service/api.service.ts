@@ -7,8 +7,8 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class ApiService {
 
-  private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
-  //private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
+  //private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
+  private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
   constructor(private http: HttpClient,private localStorage: LocalStorageService) {}
   token:string="";
   // GET request
@@ -22,10 +22,18 @@ export class ApiService {
   }
 
   // POST request
-  post(endpoint: string, body: any): Observable<any> {
+  post(endpoint: string, body: any, isFormData:boolean=false): Observable<any> {
     this.token = this.localStorage.getData('token');
     const url = `${this.apiBaseUrl}${endpoint}`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json','Authorization': `Bearer ${this.token}` });
+    let headers;
+    if (isFormData) {
+      headers = new HttpHeaders({'Authorization': `Bearer ${this.token}` });
+    } else {
+      headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      });
+    }
     return this.http.post(url, body, { headers });
   }
 
