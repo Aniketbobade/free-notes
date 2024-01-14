@@ -9,13 +9,17 @@ import { FormsModule } from '@angular/forms';
 import { DocumentDetailsComponent } from './document-details/document-details.component';
 import { SafeUrl } from '@angular/platform-browser';
 import { SafeUrlPipe } from '../pipes/safe-url.pipe';
+import { MainComponent } from './main/main.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     HomeComponent,
     HeaderComponent,
     NavbarComponent,
     DocumentDetailsComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    MainComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

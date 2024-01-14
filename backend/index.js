@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 const mailService = require("./src/helper/emailService");
 const config = require("./src/config/development");
 const dbConnect = require("./src/dbConnection/mongoDbConnect");

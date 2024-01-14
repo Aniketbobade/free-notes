@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common-service/api.service';
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +17,7 @@ export class SignUpComponent {
   };
   selectedFile: File | null = null;
 
-  constructor(private http: HttpClient, private apiService:ApiService) {}
+  constructor(private http: HttpClient, private apiService:ApiService, private router :Router) {}
 
   onSubmit(form: any): void {
     if (form.valid && this.selectedFile) {
@@ -29,6 +30,11 @@ export class SignUpComponent {
         .subscribe(
           (response) => {
             console.log('User created:', response);
+            let userMail=response.result.email;
+            console.log(userMail);
+            this.router.navigate(['/invite-mail'], {
+              queryParams: { userMail: userMail }
+            });
           },
           (error) => {
             console.error('Error uploading:', error);

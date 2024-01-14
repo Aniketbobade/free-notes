@@ -1,4 +1,5 @@
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../../swagger.json');
 module.exports = (app) => {
     app.use("/api", [
      require("../validators-services-routes/user/routes"),
@@ -9,6 +10,7 @@ module.exports = (app) => {
      require("../validators-services-routes/reviews/routes"),
      require("../validators-services-routes/ratings/routes"),
     ]);
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.get("/", (req, res) => {
       res.send("Hello from server");
     });

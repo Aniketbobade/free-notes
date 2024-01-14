@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/common-service/api.service';
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { ApiService } from 'src/app/common-service/api.service';
 export class LoginComponent {
 
   loginForm:FormGroup= new FormGroup({});
-  constructor(private formBuilder:FormBuilder, private apiService:ApiService){
+  constructor(private formBuilder:FormBuilder, private apiService:ApiService, private router: Router){
   }
 
   ngOnInit(): void {
@@ -20,8 +21,11 @@ export class LoginComponent {
   }
   login(){
     this.apiService.post('/login',this.loginForm.value).subscribe((res: any)=>{
-      if(res.success){
+      if(res.status== 200){
         localStorage.setItem('token',res.token);
+        this.router.navigate(['/dashboard']);
+      }else{
+        console.log(res);
       }
     }
     );

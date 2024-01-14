@@ -6,10 +6,13 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FeatureModule } from './feature/feature.module';
+import { UserModule } from './user/user.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -18,6 +21,7 @@ import { FeatureModule } from './feature/feature.module';
     FeatureModule,
     FormsModule,
     HttpClientModule,
+    UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]

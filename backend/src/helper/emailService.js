@@ -10,7 +10,7 @@ mailService.sendInviteMail =async (email, subject, html) => {
                 pass:config.MAIL_PASS
             }
         });
-        let info= transposer.sendMail({
+        let info= await transposer.sendMail({
             from:"studyNotion !! the code help- Aniket",
             to:`${email}`,
             subject:`${subject}`,
