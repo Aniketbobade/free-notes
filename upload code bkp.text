@@ -1,0 +1,56 @@
+<div>
+    <h2>Upload File</h2>
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="onUpload()">Upload</button>
+    
+    <div *ngIf="uploadProgress > 0 && uploadProgress < 100">
+      <p>Uploading: {{ uploadProgress }}%</p>
+      <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+    </div>
+  </div>
+  
+  
+  import { HttpClient, HttpEventType, HttpResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-file-upload',
+  templateUrl: './file-upload.component.html',
+  styleUrls: ['./file-upload.component.css']
+})
+export class FileUploadComponent {
+
+  selectedFile: File | null = null;
+  
+  uploadProgress = 0;
+
+  constructor(private httpClient: HttpClient) {}
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload(): void {
+    if (this.selectedFile) {
+      const formData = new FormData();
+      formData.append('file', this.selectedFile);
+
+      const uploadUrl = 'YOUR_UPLOAD_API_ENDPOINT';
+
+      this.httpClient.post(uploadUrl, formData, {
+        reportProgress: true,
+        observe: 'events'
+      })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round((event.loaded /(event.total ?? 1)) * 100);
+        } else if (event instanceof HttpResponse) {
+          console.log('File uploaded successfully:', event.body);
+          // Reset the form or perform any additional actions after successful upload
+        }
+      });
+    } else {
+      console.warn('No file selected.');
+    }
+  }
+}

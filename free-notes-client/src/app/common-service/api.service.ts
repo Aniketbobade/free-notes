@@ -52,4 +52,16 @@ export class ApiService {
     const url = `${this.apiBaseUrl}${endpoint}`;
     return this.http.delete(url);
   }
+
+  fileUpload(endpoint:string, body:any): Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`,
+    });
+    const url = `${this.apiBaseUrl}${endpoint}`;
+    return this.http.post(url, body, {
+      reportProgress: true,
+      observe: 'events',
+      headers: headers
+    });
+  }
 }

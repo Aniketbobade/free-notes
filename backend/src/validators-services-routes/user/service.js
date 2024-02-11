@@ -28,7 +28,7 @@ services.createUser = async (req, res) => {
     const token = crypto.randomBytes(32).toString("hex");
     const inviteLink = `${config.FRONTEND_URL}/auth/register?inviteCode=${token}&id=${user._id}`;
     await Token.create({ userId: user._id, token });
-    mailService.sendInviteMail(
+    await mailService.sendInviteMail(
       email,
       "Registration Mail from FreeNote",
       registrationMail(req.body.firstName, req.body.lastName, inviteLink)

@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     }
   
     const id: string = this.getField.value.id; // Access the value of the 'id' field
-    this.apiService.get('/get-subjects', id).subscribe(
+    this.apiService.get(`/get-subjects?fieldId=${id}`).subscribe(
       (res: any) => {
         this.getSubject = res.subjects; // Assign the subjects directly
       },

@@ -8,6 +8,7 @@ import { InviteLinkMailComponent } from './auth/invite-link-mail/invite-link-mai
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { AuthGuard } from './user/AuthGuard/auth.guard';
 import { ProfileComponent } from './user/profile/profile.component';
+import { FileUploadComponent } from './user/dashboard/file-upload/file-upload.component';
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -16,6 +17,18 @@ const routes: Routes = [
   {path:"document-details",component:DocumentDetailsComponent},
   { path: 'invite-mail', component: InviteLinkMailComponent },
   {path:"dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+     // { path: 'setting', component: SettingComponent }, // Add your Setting component
+      { path: 'upload-file', component: FileUploadComponent }, // Add your Upload File component
+     // { path: 'see-your-files', component: SeeYourFilesComponent }, // Add your See Your Files component
+      { path: 'profile', component: ProfileComponent }, // This route is already there, assuming you have a ProfileComponent
+    //  { path: 'logout', component: LogoutComponent } // Add your Logout component
+    ]
+  },
   {path:"profile", component: ProfileComponent, canActivate: [AuthGuard]}
 ];
 
