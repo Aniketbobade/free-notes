@@ -1,1 +1,21 @@
-<p>profile works!</p>
+<div class="profile-container">
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+      <div>
+        <label for="firstName">First Name</label>
+        <input id="firstName" formControlName="firstName" type="text" />
+      </div>
+  
+      <div>
+        <label for="lastName">Last Name</label>
+        <input id="lastName" formControlName="lastName" type="text" />
+      </div>
+  
+      <div>
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" type="email" [disabled]="true" />
+      </div>
+  
+      <button type="submit" [disabled]="!profileForm.valid">Save</button>
+    </form>
+  </div>
+  

@@ -9,5 +9,5 @@ router.post("/login", userValidator.login, userService.login);
 router.post("/set-password",userValidator.setPassword, userService.setPassword );
 
 /*************User routes */
-router.get("/user",isAuth,services.userProfile);
+router.get("/profile",isAuth,services.userProfile);
 module.exports = router;

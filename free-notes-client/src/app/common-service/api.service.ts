@@ -15,13 +15,16 @@ export class ApiService {
   token: string = '';
   // GET request
   get(endpoint: string, params?: any): Observable<any> {
-    this.token = this.localStorage.getData('token');
+    this.token= this.localStorage.getData("token")
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.token}`,
     });
+
     const url = `${this.apiBaseUrl}${endpoint}`;
+
     return this.http.get(url, {
-      params: new HttpParams({ fromObject: params }),
+      headers: headers,
+      params: new HttpParams({ fromObject: params })
     });
   }
 
