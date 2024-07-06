@@ -22,6 +22,7 @@ export class LoginComponent {
   login(){
     this.apiService.post('/login',this.loginForm.value).subscribe((res: any)=>{
       if(res.status== 200){
+        console.log(res)
         localStorage.setItem('token',res.token);
         this.router.navigate(['/dashboard']);
       }else{

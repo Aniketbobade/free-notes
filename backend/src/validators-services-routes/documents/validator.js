@@ -3,7 +3,8 @@ const validator={}
 validator.addDocument= async(req, res,next)=>{
     try {
         const {name,subject, desc}= req.body;
-        console.log(name);
+        console.log(req.body);
+        console.log(req.files.document)
         if(!name || !desc || !req.files.document || !subject){
             return res.status(400).json({error:"Please fill all the fields"});
         }

@@ -10,19 +10,18 @@
   <div>
     <label for="field">Field:</label>
     <select id="field" formControlName="field" (change)="onFieldChange()">
-      <!-- Populate dropdown options dynamically -->
-      <option *ngFor="let field of fields" [value]="field?._id">{{ field?.name}}</option>
+      <option *ngFor="let field of fields" [value]="field?._id">{{ field?.name }}</option>
     </select>
   </div>
   <div>
     <label for="subject">Subject:</label>
     <select id="subject" formControlName="subject">
-      <option *ngFor="let subject of subjects" [value]="subject?._id">{{ subject?.name}}</option>
+      <option *ngFor="let subject of subjects" [value]="subject?._id">{{ subject?.name }}</option>
     </select>
   </div>
   <div>
-    <label for="file">File:</label>
-    <input type="file" id="file" formControlName="file" (change)="onFileChange($event)">
+    <label for="document">File:</label>
+    <input type="file" id="document" (change)="onFileChange($event)">
   </div>
   <div>
     <button type="submit" [disabled]="!fileUploadForm.valid">Submit</button>

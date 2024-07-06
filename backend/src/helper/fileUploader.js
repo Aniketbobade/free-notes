@@ -7,12 +7,12 @@ const uploadDocument = async (file, folder) => {
       const result = await cloudinary.uploader.upload(file.path, {
         folder: folder,
         public_id: `${fileName[0]}_${Date.now()}`,
-        resource_type: "raw",
+        resource_type: "auto",
       });
-      // console.log("Upload successful:", result);
+       console.log("Upload successful:", result);
       return result;
     } catch (error) {
-      // console.error("Upload error:", error);
+       console.error("Upload error:", error);
       throw error;
     }
 };

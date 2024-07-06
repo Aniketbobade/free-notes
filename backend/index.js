@@ -6,9 +6,11 @@ const mailService = require("./src/helper/emailService");
 const config = require("./src/config/development");
 const dbConnect = require("./src/dbConnection/mongoDbConnect");
 const cloudinary = require("./src/config/cloudinary");
+
 cloudinary.cloudinaryConnect();
 require("./src/routers/app")(app);
 require("./src/routers/routes")(app);
+
 
 dbConnect()
   .then(() => {
