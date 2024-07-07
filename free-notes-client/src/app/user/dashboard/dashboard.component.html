@@ -1,24 +1,22 @@
 <div class="container">
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </div>
-  
-  <nav class="navbar">
-    <a class="navbar-brand" href="#">Welcome</a>
-    <ul class="nav navbar-nav">
-      <li><a routerLink="/dashboard/setting">Setting</a></li>
-      <li><a routerLink="/dashboard/upload-file">Upload file</a></li>
-      <li><a routerLink="/dashboard/see-your-files">See your files</a></li>
-      <li><a routerLink="/dashboard/profile">Profile</a></li>
-      <li><a routerLink="/dashboard/logout">Logout</a></li>
-    </ul>
-  </nav>
-  
-  <div class="main">
-    <router-outlet></router-outlet>
-  </div>
-  
+  <header>
+    <nav class="navbar">
+      <a class="navbar-brand" href="#">Welcome</a>
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/dashboard/setting">Setting</a></li>
+        <li><a routerLink="/dashboard/upload-file">Upload file</a></li>
+        <li><a routerLink="/dashboard/see-your-files">See your files</a></li>
+        <li><a routerLink="/dashboard/profile">Profile</a></li>
+        <button>logout</button>
+      </ul>
+    </nav>  
+  </header>
+  <main>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
   <footer class="footer">
     <p>Copyright &copy; 2023 Aniket</p>
   </footer>
+</div>

@@ -44,6 +44,62 @@ service.addDocument= async(req, res)=>{
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
     }
 }
+service.getDocuments= async(req,res)=>{
+  try{
+    const userId= req.user._id
+    if(!userId){
+      return res.status(400).json({ error: messages.userNotFound });
+    }
+    const documents = await Document.aggregate([
+      {
+        '$match': {
+          'addedBy': new ObjectId(userId)
+        }
+      }, {
+        '$group': {
+          '_id': '$subject', 
+          'documents': {
+            '$push': '$$ROOT'
+          }
+        }
+      }, {
+        '$lookup': {
+          'from': 'subjects', 
+          'localField': '_id', 
+          'foreignField': '_id', 
+          'as': 'subject'
+        }
+      }, {
+        '$unwind': {
+          'path': '$subject'
+        }
+      }, {
+        '$project': {
+          '_id': 0, 
+          'documents': 1, 
+          'subject': 1
+        }
+      }
+    ]);
+    if(documents.length){
+      return res.status(200).json({
+        status:statusCodes.OK,
+        message:messages.resourceRetrieveSuccessfully,
+        result:documents,
+      });
+    }else{
+      return res.status(204).json({
+        status:statusCodes.NO_CONTENT,
+        message:messages.resourceNotFound
+      });
+    }
+  }catch(error){
+    console.log(error);
+        return res
+      .status(500)
+      .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
+  }
+}
 
 service.getDocumentBySubject= async(req, res)=>{
     try {

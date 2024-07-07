@@ -87,7 +87,7 @@ services.login = async (req, res) => {
       expiresIn: "1d",
     });
     res.setHeader("Authorization", `Bearer ${token}`);
-    return res.status(200).json({ status:statusCodes.OK,message: messages.loginSuccess, token:token });
+    return res.status(200).json({ status:statusCodes.OK,message: messages.loginSuccess, token:token, user:isExist });
   } catch (error) {
     console.log(error);
     return res

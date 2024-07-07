@@ -32,28 +32,29 @@
       </tbody>
     </table>
   </div>
-<br>
-<br>
-  <div *ngFor="let document of documents">
-    <h3>Documents</h3>
-    <table>
+  <br>
+  <br>
+  <div *ngIf="documents.length>0">
+    <table class="document-table">
       <thead>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Link</th>
-        <th>Added By</th>
-        <th>Details</th>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Link</th>
+          <th>Added By</th>
+          <th>Details</th>
+        </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let document of documents">
           <td>{{ document.name }}</td>
           <td>{{ document.desc }}</td>
           <td><a href="{{ document.file_url }}" target="_blank">click here</a></td>
-          <td> {{document.addedBy.email}} </td>
+          <td>{{ document.addedBy.email }}</td>
           <td><button (click)="navigateToOtherPage(document._id)">click here</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-
+  
 </div>

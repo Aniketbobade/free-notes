@@ -9,6 +9,8 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { AuthGuard } from './user/AuthGuard/auth.guard';
 import { ProfileComponent } from './user/profile/profile.component';
 import { FileUploadComponent } from './user/dashboard/file-upload/file-upload.component';
+import { MyDocumentsComponent } from './user/dashboard/my-documents/my-documents.component';
+
 
 const routes: Routes = [
   {path:"", component:HomeComponent},
@@ -24,9 +26,9 @@ const routes: Routes = [
     children: [
      // { path: 'setting', component: SettingComponent }, // Add your Setting component
       { path: 'upload-file', component: FileUploadComponent }, // Add your Upload File component
-     // { path: 'see-your-files', component: SeeYourFilesComponent }, // Add your See Your Files component
+      { path: 'see-your-files', component: MyDocumentsComponent }, // Add your See Your Files component
       { path: 'profile', component: ProfileComponent }, // This route is already there, assuming you have a ProfileComponent
-    //  { path: 'logout', component: LogoutComponent } // Add your Logout component
+
     ]
   },
   {path:"profile", component: ProfileComponent, canActivate: [AuthGuard]}

@@ -1,0 +1,25 @@
+<div *ngFor="let group of result">
+    <h2>Subject: {{ group.subject.name }}</h2>
+    <p><strong>Description:</strong>  {{ group.subject.desc }}</p>
+    <p><strong>Tags:</strong> {{ group.subject.tags.join(', ') }}</p>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>File URL</th>
+          <th>Created At</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of group.documents">
+          <td>{{ doc.name }}</td>
+          <td>{{ doc.desc }}</td>
+          <td><a [href]="doc.file_url" target="_blank">View File</a></td> 
+          <td>{{ doc.createdAt | date: 'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
