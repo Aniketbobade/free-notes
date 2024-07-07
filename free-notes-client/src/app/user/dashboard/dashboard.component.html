@@ -1,13 +1,13 @@
 <div class="container">
   <header>
     <nav class="navbar">
-      <a class="navbar-brand" href="#">Welcome</a>
+      <a class="navbar-brand" href="#">Welcome {{userName}}</a>
       <ul class="nav navbar-nav">
-        <li><a routerLink="/dashboard/setting">Setting</a></li>
+        <li><a routerLink="/">Home</a></li>
         <li><a routerLink="/dashboard/upload-file">Upload file</a></li>
         <li><a routerLink="/dashboard/see-your-files">See your files</a></li>
         <li><a routerLink="/dashboard/profile">Profile</a></li>
-        <button>logout</button>
+        <button (click)="logout()">logout</button>
       </ul>
     </nav>  
   </header>

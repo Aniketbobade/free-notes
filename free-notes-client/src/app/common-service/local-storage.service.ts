@@ -14,4 +14,7 @@ export class LocalStorageService {
   getData<T>(key: string): any {
     return localStorage.getItem(key);
   }
+  clearStorage():void{
+    localStorage.clear()
+  }
 }

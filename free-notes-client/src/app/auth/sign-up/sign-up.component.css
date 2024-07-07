@@ -1,0 +1,60 @@
+/* Form container styles */
+form {
+    max-width: 400px; /* Maximum width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 20px; /* Padding around the form */
+    border: 1px solid #ccc; /* Border around the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #fff; /* Background color of the form */
+  }
+  
+  /* Individual form field container styles */
+  form div {
+    margin-bottom: 15px; /* Space between form fields */
+  }
+  
+  /* Label styles */
+  form label {
+    display: block; /* Labels are block elements */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Bold text for labels */
+  }
+  
+  /* Input field styles */
+  form input[type="email"],
+  form input[type="text"],
+  form input[type="file"] {
+    width: 100%; /* Full width input fields */
+    padding: 10px; /* Padding inside the input fields */
+    border: 1px solid #ccc; /* Border around input fields */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin-top: 5px;
+  }
+  
+  /* Error message styles */
+  form div div {
+    color: red; /* Red text for error messages */
+    font-size: 12px; /* Smaller font size for error messages */
+    margin-top: 5px; /* Space between input and error message */
+  }
+  
+  /* Submit button styles */
+  form button[type="submit"] {
+    width: 100%; /* Full width submit button */
+    padding: 10px; /* Padding inside the button */
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Larger font size for the button */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+  }
+  
+  /* Submit button hover effect */
+  form button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+  }
+  

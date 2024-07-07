@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, retry } from 'rxjs';
 import { ApiService } from 'src/app/common-service/api.service';
+import { LocalStorageService } from 'src/app/common-service/local-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
       this.fields = res;
     });
   }
+
   searchSubject() {
     if (this.getSubject.length > 0) {
       this.getSubject = []; // Clear the array if it's not empty

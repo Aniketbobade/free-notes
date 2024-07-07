@@ -25,4 +25,8 @@ export class DashboardComponent implements OnInit {
     console.log(`${user.firstName} ${user.lastName}`)
     this.userName= `${user.firstName} ${user.lastName}`;
   }
+  logout():void{
+     this.storage.clearStorage();
+     this.router.navigate(['/']);
+  }
 }
