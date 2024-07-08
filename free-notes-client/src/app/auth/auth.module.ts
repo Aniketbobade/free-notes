@@ -4,6 +4,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InviteLinkMailComponent } from './invite-link-mail/invite-link-mail.component';
+import { AppTranslateModule } from '../feature/app.translate';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { InviteLinkMailComponent } from './invite-link-mail/invite-link-mail.com
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppTranslateModule
   ]
 })
 export class AuthModule { }

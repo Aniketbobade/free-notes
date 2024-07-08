@@ -1,14 +1,14 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div>
-        <label for="">email: </label>
+        <label for="">{{'EMAIL'|translate}}: </label>
         <input type="email" formControlName="email">
         <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">email is required</div>
     </div>
     <div>
-        <label for="">password: </label>
+        <label for="">{{'PASSWORD'|translate}}: </label>
         <input type="password" formControlName="password">
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">password is required</div>
     </div>
    
-    <button type="submit">login</button>
+    <button type="submit">{{'LOGIN'|translate}}</button>
 </form>

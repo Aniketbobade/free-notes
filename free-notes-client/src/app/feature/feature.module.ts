@@ -11,6 +11,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { SafeUrlPipe } from '../pipes/safe-url.pipe';
 import { MainComponent } from './main/main.component';
 import { FooterComponent } from './footer/footer.component';
+import { AppTranslateModule } from './app.translate';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -25,7 +26,8 @@ import { FooterComponent } from './footer/footer.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AppTranslateModule
   ]
 })
 export class FeatureModule { }
