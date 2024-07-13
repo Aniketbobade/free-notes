@@ -6,8 +6,8 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root',
 })
 export class ApiService {
-  private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
-  //private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
+  //private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
+  private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService
@@ -64,7 +64,7 @@ export class ApiService {
       Authorization: `Bearer ${this.token}`,
     });
     const url = `${this.apiBaseUrl}${endpoint}`;
-    return this.http.delete(url);
+    return this.http.delete(url,{headers});
   }
 
   fileUpload(endpoint: string, body: FormData, isFormData: boolean): Observable<any> {

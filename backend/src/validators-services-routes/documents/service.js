@@ -144,6 +144,32 @@ service.getDocumentById= async(req, res)=>{
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
   }
 }
+
+service.deleteDocument= async(req,res)=>{
+  try{
+    const {id}= req.params;
+    const userId= req.user._id;
+    const isPresent = await Document.findOne({_id:new ObjectId(id),addedBy:new ObjectId(userId)}).lean();
+    if(!isPresent){
+      return res.status(204).json({
+        status:statusCodes.NO_CONTENT,
+        message:messages.resourceNotFound
+      });
+    }
+    const deleteDocument = await Document.findByIdAndDelete(id).lean();
+    return res.status(200).json({
+      status:statusCodes.OK,
+      message:messages.resourceDeletedSuccessfully,
+      result:deleteDocument
+    })
+
+  }catch(error){
+    console.log(error);
+    return res
+  .status(500)
+  .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
+  }
+}
  
 
 module.exports=service;

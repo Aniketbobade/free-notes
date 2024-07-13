@@ -9,7 +9,8 @@
           <th>Name</th>
           <th>Description</th>
           <th>File URL</th>
-          <th>Created At</th> 
+          <th>Created At</th>
+          <th>Action</th> 
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,7 @@
           <td>{{ doc.desc }}</td>
           <td><a [href]="doc.file_url" target="_blank">View File</a></td> 
           <td>{{ doc.createdAt | date: 'short' }}</td>
+          <td><button (click)="deleteDocument(doc._id)">Delete</button><button>Edit</button></td>
         </tr>
       </tbody>
     </table>

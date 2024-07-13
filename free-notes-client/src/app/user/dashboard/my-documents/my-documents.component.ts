@@ -16,9 +16,17 @@ export class MyDocumentsComponent implements OnInit {
 
   }
   getDocuments():void{
+    this.result =[]
     this.apiService.get('/user/get-documents').subscribe((res:any)=>{
       if(res){
         this.result= res.result
+      }
+    })
+  }
+  deleteDocument(id:string):void{
+    this.apiService.delete(`/user/delete-document/${id}`).subscribe((res:any)=>{
+      if(res){
+        this.getDocuments();
       }
     })
   }
