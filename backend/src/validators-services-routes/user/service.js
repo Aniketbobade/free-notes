@@ -10,6 +10,7 @@ const registrationMail = require("../../mail-template/registrationMail");
 const jwt = require("jsonwebtoken");
 const statusCodes = require("../../response/statusCode");
 const messages = require("../../response/message");
+const errorLog = require("../../helper/errorLog")
 services.createUser = async (req, res) => {
   try {
     const { email } = req.body;
@@ -39,6 +40,7 @@ services.createUser = async (req, res) => {
       result:user,
     });
   } catch (error) {
+    errorLog(req,error);
     return res
       .status(500)
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
@@ -61,6 +63,7 @@ services.setPassword = async (req, res) => {
       .status(200)
       .json({ status:statusCodes.OK,message:messages.passwordUpdate,result: user });
   } catch (error) {
+    errorLog(req,error);
     return res
       .status(500)
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR,message: messages.internalServerError, error: error.message });
@@ -89,7 +92,7 @@ services.login = async (req, res) => {
     res.setHeader("Authorization", `Bearer ${token}`);
     return res.status(200).json({ status:statusCodes.OK,message: messages.loginSuccess, token:token, user:isExist });
   } catch (error) {
-    console.log(error);
+    errorLog(req,error);
     return res
       .status(500)
       .json({ status:statusCodes.INTERNAL_SERVER_ERROR ,message:messages.internalServerError, error: error });
@@ -109,6 +112,7 @@ services.userProfile = async (req, res) => {
     else
       return res.status(204).json({status:statusCodes.NO_CONTENT ,message: messages.userNotFound });
   } catch (error) {
+    errorLog(req,error);
     return res.status(500).json({status:statusCodes.INTERNAL_SERVER_ERROR  ,message:messages.internalServerError, error: error });
   }
 };
