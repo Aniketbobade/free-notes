@@ -10,7 +10,8 @@ const registrationMail = require("../../mail-template/registrationMail");
 const jwt = require("jsonwebtoken");
 const statusCodes = require("../../response/statusCode");
 const messages = require("../../response/message");
-const errorLog = require("../../helper/errorLog")
+const errorLog = require("../../helper/errorLog");
+const Message = require("../chat/messageModel");
 services.createUser = async (req, res) => {
   try {
     const { email } = req.body;
@@ -116,5 +117,27 @@ services.userProfile = async (req, res) => {
     return res.status(500).json({status:statusCodes.INTERNAL_SERVER_ERROR  ,message:messages.internalServerError, error: error });
   }
 };
-
+services.getUsers = async (req,res)=>{
+  try {
+    const list= await UserModel.find().lean();
+    return res.status(200).json({status:statusCodes.OK  ,message: messages.resourceRetrieveSuccessfully, result:list });
+  } catch (error) {
+    errorLog(req,error)
+    return res.status(500).json({status:statusCodes.INTERNAL_SERVER_ERROR  ,message:messages.internalServerError, error: error });
+  }
+}
+services.getMessages = async(req,res)=>{
+  try{
+    const userId = req.params.userId;
+    const chatMessages = await Message.find({ receivers: userId }).populate('sender').exec()
+    if(chatMessages.length){
+      return res.status(200).json({status:statusCodes.OK  ,message: messages.resourceRetrieveSuccessfully, result:chatMessages });
+    }else{
+      return res.status(200).json({status:statusCodes.NOT_FOUND  ,message:messages.resourceNotFound });
+    }
+  }catch(error){
+    errorLog(req,error)
+    return res.status(500).json({status:statusCodes.INTERNAL_SERVER_ERROR  ,message:messages.internalServerError, error: error });
+  }
+}
 module.exports = services;

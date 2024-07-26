@@ -10,7 +10,7 @@ export class LoadingService {
   public readonly loading$ = this._loading.asObservable();
 
   show() {
-    this._loading.next(true);
+    this._loading.next(false);
   }
 
   hide() {

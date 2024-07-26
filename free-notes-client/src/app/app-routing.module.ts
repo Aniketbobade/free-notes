@@ -10,6 +10,8 @@ import { AuthGuard } from './user/AuthGuard/auth.guard';
 import { ProfileComponent } from './user/profile/profile.component';
 import { FileUploadComponent } from './user/dashboard/file-upload/file-upload.component';
 import { MyDocumentsComponent } from './user/dashboard/my-documents/my-documents.component';
+import { ChatListComponent } from './user/dashboard/chat/chat-list/chat-list.component';
+import { ChatPersonalComponent } from './user/dashboard/chat/chat-personal/chat-personal.component';
 
 
 const routes: Routes = [
@@ -28,7 +30,8 @@ const routes: Routes = [
       { path: 'upload-file', component: FileUploadComponent }, // Add your Upload File component
       { path: 'see-your-files', component: MyDocumentsComponent }, // Add your See Your Files component
       { path: 'profile', component: ProfileComponent }, // This route is already there, assuming you have a ProfileComponent
-
+      {path: 'chat-list', component: ChatListComponent},
+      {path:'chat/:id',component:ChatPersonalComponent}
     ]
   },
   {path:"profile", component: ProfileComponent, canActivate: [AuthGuard]}
