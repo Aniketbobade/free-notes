@@ -129,7 +129,7 @@ services.getUsers = async (req,res)=>{
 services.getMessages = async(req,res)=>{
   try{
     const userId = req.params.userId;
-    const chatMessages = await Message.find({ receivers: userId }).populate('sender').exec()
+    const chatMessages = await Message.find({ receivers: userId },{sender:1,senderName:1,content:1,receivers:1}).exec()
     if(chatMessages.length){
       return res.status(200).json({status:statusCodes.OK  ,message: messages.resourceRetrieveSuccessfully, result:chatMessages });
     }else{

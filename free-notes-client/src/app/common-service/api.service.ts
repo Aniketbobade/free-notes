@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { environment } from "../../environments/environment";
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   //private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
-  private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
+  private apiBaseUrl: string = environment.apiBaseUrl; // Replace with your API base URL
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService

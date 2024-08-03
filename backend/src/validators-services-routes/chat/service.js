@@ -6,15 +6,17 @@ const Room = require("./roomModel");
 const isChatUser = require("../../middlewares/isChatUser");
 const WebSocket = require("ws");
 const ObjectId = require("mongoose").Types.ObjectId;
-const socketConnection = (wss) => {
-  wss.on("connection", (ws, req) => {
-    console.log("New client connected");
 
-    // Use auth middleware to verify the token
-    try {
+const socketConnection = (wss) => {
+  try {
+    wss.on("connection", (ws, req) => {
+      console.log("New client connected");
+
+      // Use auth middleware to verify the token
+
       isChatUser(req, ws, async (user) => {
         ws.user = user;
-        console.log(user);
+       // console.log(user);
 
         ws.on("message", async (message) => {
           const msgObj = JSON.parse(message);
@@ -31,15 +33,17 @@ const socketConnection = (wss) => {
           console.log("Client disconnected");
         });
       });
-    } catch (error) {
-      console.error(error);
-    }
-  });
+
+    })
+  } catch (error) {
+    console.error(error);
+  };
 
   // Handle private message
   const handlePrivateMessage = async (sender, msgObj) => {
     try {
-      console.log(sender, msgObj);
+      console.log("called");
+     // console.log(sender, msgObj);
       const { content, receiverId } = msgObj;
 
       const receiver = await User.findById(receiverId);
@@ -50,13 +54,14 @@ const socketConnection = (wss) => {
 
       const newMessage = new Message({
         sender: sender.user._id,
+        senderName: `${sender.user.firstName} ${sender.user.lastName}` || sender.user.firstName,
         content,
         type: "private",
         receivers: [receiver._id],
       });
 
       await newMessage.save();
-      console.log();
+      console.log("saved");
       // Send message to receiver if connected
       wss.clients.forEach((client) => {
         console.log("clients", client.user.user._id);

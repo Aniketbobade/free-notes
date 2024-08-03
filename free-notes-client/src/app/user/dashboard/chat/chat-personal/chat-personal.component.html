@@ -2,7 +2,7 @@
     <h3>Chat with {{ userProfile.firstName }} {{userProfile.lastName}}</h3>
     <div class="messages">
       <div *ngFor="let message of messages">
-        {{ message.sender }}: {{ message.content }}
+          {{ message.senderName }}: {{ message.content }}
       </div>
     </div>
     <input type="text" [(ngModel)]="newMessage" placeholder="Type a message...">
