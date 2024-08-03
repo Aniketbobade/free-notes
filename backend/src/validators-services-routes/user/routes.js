@@ -12,4 +12,5 @@ router.get("/user-list",userService.getUsers)
 /*************User routes */
 router.get("/profile",isAuth,services.userProfile);
 router.get("/user/messages/:userId", isAuth, services.getMessages)
+router.get("/get-user/:id",services.getUsersById)
 module.exports = router;

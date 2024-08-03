@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ApiService } from 'src/app/common-service/api.service';
 import { WebsocketService } from 'src/app/common-service/websocket.service';
 
 @Component({
@@ -11,11 +12,13 @@ export class ChatPersonalComponent implements OnInit {
   messages: any[] = [];
   newMessage: string = '';
   userId: string="";
+  userProfile:any;
 
-  constructor(private route: ActivatedRoute, private websocketService: WebsocketService) {}
+  constructor(private route: ActivatedRoute, private websocketService: WebsocketService,private apiService:ApiService) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('id') || ''; // Ensure userId is a string
+    this.getChatProfile()
     const token = localStorage.getItem('token') || ''
     this.websocketService.connect(token);
     this.websocketService.fetchInitialMessages(this.userId).subscribe((res) => {
@@ -30,6 +33,15 @@ export class ChatPersonalComponent implements OnInit {
     });
   }
 
+  getChatProfile(){
+    console.log(this.userId)
+    this.apiService.get(`/get-user/${this.userId}`).subscribe((res)=>{
+      if(res.status===200){
+        this.userProfile=res.result
+      }       
+    },
+  )
+  }
   sendMessage(): void {
     const message = {
       type: 'private',

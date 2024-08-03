@@ -7,7 +7,7 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class ApiService {
   //private apiBaseUrl: string = 'https://free-notes-app.onrender.com/api'; // Replace with your API base URL
-  private apiBaseUrl: string = 'http://103.127.31.207:3000/api'; // Replace with your API base URL
+  private apiBaseUrl: string = 'http://localhost:3000/api'; // Replace with your API base URL
   constructor(
     private http: HttpClient,
     private localStorage: LocalStorageService

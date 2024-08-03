@@ -18,7 +18,7 @@ export class WebsocketService {
   private createWebSocketConnection(token: string): Observable<WebSocketSubject<any>> {
     return new Observable((observer: Observer<any>) => {
       if (!this.socket$ || this.socket$.closed) {
-        this.socket$ = new WebSocketSubject(`ws://103.127.31.207:3000?token=${token}`);
+        this.socket$ = new WebSocketSubject(`ws://localhost:3000?token=${token}`);
         this.socket$.pipe(
           map(message => [...this.messagesSubject.getValue(), message]),
           catchError(error => {

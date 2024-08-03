@@ -1,5 +1,5 @@
 <div class="chat-personal">
-    <h3>Chat with {{ userId }}</h3>
+    <h3>Chat with {{ userProfile.firstName }} {{userProfile.lastName}}</h3>
     <div class="messages">
       <div *ngFor="let message of messages">
         {{ message.sender }}: {{ message.content }}
