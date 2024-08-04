@@ -7,7 +7,7 @@ const userValidator = require("./validator");
 router.post("/signup", userValidator.createUser, userService.createUser);
 router.post("/login", userValidator.login, userService.login);
 router.post("/set-password",userValidator.setPassword, userService.setPassword );
-router.get("/user-list",userService.getUsers)
+router.get("/user-list",isAuth,userService.getUsers)
 
 /*************User routes */
 router.get("/profile",isAuth,services.userProfile);

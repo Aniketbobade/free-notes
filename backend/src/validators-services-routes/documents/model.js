@@ -5,7 +5,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const documentSchema= new Schema({
     name:{type:String,required:true},
     desc:{type:String,required:true},
-    file_url:{type:String,required:true},
+    file_url:{type:String},
     file_type:{type:String,required:true},
     addedBy:{type:ObjectId, ref:'User', required:true},
     subject:{type:ObjectId, ref:'Subject', required:true},

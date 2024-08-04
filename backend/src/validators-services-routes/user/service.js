@@ -119,7 +119,10 @@ services.userProfile = async (req, res) => {
 };
 services.getUsers = async (req,res)=>{
   try {
-    const list= await UserModel.find().lean();
+    console.log(req.user)
+    const list= await UserModel.find({
+      _id: { $nin: [req.user._id] }
+    }).lean();
     return res.status(200).json({status:statusCodes.OK  ,message: messages.resourceRetrieveSuccessfully, result:list });
   } catch (error) {
     errorLog(req,error)

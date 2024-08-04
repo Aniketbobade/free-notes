@@ -71,6 +71,7 @@ export class FileUploadComponent implements OnInit {
 
       this.apiService.fileUpload('/user/add-document', formData, true).subscribe(response => {
         console.log('API Response:', response);
+        alert('File uploaded successfully!');
       });
     } else {
       console.log('Form is invalid:', this.fileUploadForm.errors);

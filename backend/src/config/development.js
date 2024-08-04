@@ -13,5 +13,9 @@ module.exports = {
     PROFILE_PHOTOS:process.env.PROFILE_PHOTOS,
     API_KEY:process.env.API_KEY,
     API_SECRET:process.env.API_SECRET,
-    CLOUD_NAME:process.env.CLOUD_NAME
+    CLOUD_NAME:process.env.CLOUD_NAME,
+    REDIS_HOST:process.env.REDIS_HOST,
+    REDIS_PORT:process.env.REDIS_PORT,
+    REDIS_USER:process.env.REDIS_USER,
+    REDIS_PASSWORD:process.env.REDIS_PASSWORD
 }
