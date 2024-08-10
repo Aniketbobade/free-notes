@@ -25,7 +25,6 @@ service.addDocument = async (req, res) => {
     // Construct the file path
     const filePath = path.join(__dirname, '../../../uploads', file.filename);
     //  const file= req.files.document;
-    console.log("file details");
     if(!filePath){
       return res.status(400).json({ error: 'Missing required parameter - document this is error' });
     }
@@ -41,7 +40,6 @@ service.addDocument = async (req, res) => {
     //req.body.file_url = fileUpload.secure_url;
     // console.log(fileUpload);
     //console.log(req.body)
-    console.log(filePath)
     const document = await Document.create(req.body);
     uploadQueue.add({ filePath: filePath, documentId: document._id });
     return res.status(201).json({
@@ -168,6 +166,16 @@ service.deleteDocument = async (req, res) => {
         status: statusCodes.NO_CONTENT,
         message: messages.resourceNotFound
       });
+    }
+    //delete from cloudinary
+    const deleteFileCludinary = await fileUploader.deleteDocument(isPresent.public_Id,isPresent.resource_type)
+    
+    console.log(deleteFileCludinary)
+    if(!deleteFileCludinary){
+      return res.status(500).json({
+        status: statusCodes.INTERNAL_SERVER_ERROR,
+        message: messages.internalServerError
+      })
     }
     const deleteDocument = await Document.findByIdAndDelete(id).lean();
     return res.status(200).json({

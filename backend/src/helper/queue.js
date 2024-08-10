@@ -30,8 +30,6 @@ uploadQueue.on('error', (error) => {
 });
 // Process the queue
 uploadQueue.process(async (job, done) => {
-  console.log("Queue data",job.data)
-    console.log('Processing file upload job:', job.data.filePath);
   const { filePath } = job.data;
 
   try {
@@ -44,8 +42,11 @@ uploadQueue.process(async (job, done) => {
         console.error('Error while deleting the file:', err);
       }
     });
-    await Document.findByIdAndUpdate(job.data.documentId, { file_url: result.secure_url });
-    console.log('File uploaded to Cloudinary:', result.secure_url);
+    if(!result){
+      done(new Error('Failed to upload to Cloudinary'));
+      await Document.findByIdAndUpdate(job.data.documentId, {uploadStatus:"REJECTED" });
+    }
+    await Document.findByIdAndUpdate(job.data.documentId, { file_url: result.secure_url, public_Id: result.public_id, resource_type: result.resource_type, uploadStatus:"UPLOADED" });
     done();
   } catch (err) {
     console.error('Error while uploading to Cloudinary:', err);
