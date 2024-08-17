@@ -2,7 +2,7 @@ require('dotenv').config()
 
 module.exports = {
     PORT: process.env.PORT || 3000,
-    MONGO_DB_URL:process.env.MONGO_DB_URL, 
+    MONGO_DB_URL:process.env.MONGO_DB_URL|| 'mongodb://localhost:27017', 
     JWT_SECRETS: process.env.JWT_SECRETS || 'topsecret',
     JWT_ADMIN_EXPIRES: process.env.JWT_ADMIN_EXPIRES || '1d',
     MAIL_HOST:process.env.MAIL_HOST,

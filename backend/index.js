@@ -8,7 +8,7 @@ const mailService = require("./src/helper/emailService");
 const config = require("./src/config/development");
 const dbConnect = require("./src/dbConnection/mongoDbConnect");
 const cloudinary = require("./src/config/cloudinary");
-const socketConnection = require('../backend/src/validators-services-routes/chat/service')
+const socketConnection = require('./src/validators-services-routes/chat/service')
 
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
