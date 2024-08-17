@@ -1,5 +1,5 @@
 export const environment = {
-    production: true,
-    apiBaseUrl: 'https://free-notes-app.onrender.com/api',
-    chatApiUrl: 'ws://free-notes-app.onrender.com/',
+    production: false,
+    apiBaseUrl: 'http://localhost:3000/api',
+    chatApiUrl: 'ws://localhost/',
 };
