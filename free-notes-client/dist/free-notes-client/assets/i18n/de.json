@@ -1,7 +1,6 @@
 {
-    "LOGIN":"Anmeldung",
-    "SIGNUP":"Anmelden",
-    "EMAIL":"Email",
-    "PASSWORD":"Passwort"
-
+  "LOGIN": "Anmeldung",
+  "SIGNUP": "Anmelden",
+  "EMAIL": "Email",
+  "PASSWORD": "Passwort"
 }

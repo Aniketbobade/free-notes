@@ -1,94 +1,92 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0; /* Ensure no margin */
+  padding: 0; /* Ensure no padding */
+}
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0; /* Ensure no margin */
-    padding: 0; /* Ensure no padding */
-  }
-  
-  header {
-    background: #333;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-    margin: 0; /* Ensure no margin */
-  }
-  
-  main {
-    flex: 1;
-    padding: 2rem;
-  }
-  
-  footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .navbar {
-    background: #007bff;
-    padding: 1rem;
-    margin: 0; /* Ensure no margin */
-  }
-  
-  .navbar-brand {
-    color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-    margin-right: 2rem;
-  }
-  
-  .navbar-nav {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-    margin: 0; /* Ensure no margin */
-  }
-  
-  .navbar-nav li {
-    display: inline;
-  }
-  
-  .navbar-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-  }
-  
-  .navbar-nav a:hover {
-    background: #0056b3;
-    border-radius: 0.25rem;
-  }
-  
-  button {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    margin: 1rem;
-    border-radius: 0.25rem;
-  }
-  
-  button:hover {
-    background: #c82333;
-  }
-  
-  .footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  .main {
-    flex: 1;
-    padding: 2rem;
-  }
-  
+header {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin: 0; /* Ensure no margin */
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.navbar {
+  background: #007bff;
+  padding: 1rem;
+  margin: 0; /* Ensure no margin */
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-right: 2rem;
+}
+
+.navbar-nav {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  margin: 0; /* Ensure no margin */
+}
+
+.navbar-nav li {
+  display: inline;
+}
+
+.navbar-nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-nav a:hover {
+  background: #0056b3;
+  border-radius: 0.25rem;
+}
+
+button {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin: 1rem;
+  border-radius: 0.25rem;
+}
+
+button:hover {
+  background: #c82333;
+}
+
+.footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.main {
+  flex: 1;
+  padding: 2rem;
+}

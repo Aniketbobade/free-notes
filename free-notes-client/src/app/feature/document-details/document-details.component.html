@@ -1,40 +1,50 @@
 <div class="document-details">
-    <h2>{{ document.name }}</h2>
-    <p>Description: {{ document.desc }}</p>
-    <p>File Type: {{ document.file_type }}</p>
-    <p>Added By: {{ document.addedBy.firstName }} {{ document.addedBy.lastName }}</p>
-    <p>File URL: <a href="{{ document.file_url }}" target="_blank">Download</a></p>
+  <h2>{{ document.name }}</h2>
+  <p>Description: {{ document.desc }}</p>
+  <p>File Type: {{ document.file_type }}</p>
+  <p>
+    Added By: {{ document.addedBy.firstName }} {{ document.addedBy.lastName }}
+  </p>
+  <p>
+    File URL: <a href="{{ document.file_url }}" target="_blank">Download</a>
+  </p>
 
-    <!-- Iframe to display the document -->
-    <iframe [src]="document.file_url | safeUrl" width="70%" height="600px" frameborder="0"></iframe>
+  <!-- Iframe to display the document -->
+  <iframe
+    [src]="document.file_url | safeUrl"
+    width="70%"
+    height="600px"
+    frameborder="0"
+  ></iframe>
 
-    <div class="likes-reviews-ratings">
-        <div class="likes">
-            <h3>Likes: {{ likes.length }}</h3>
-            <ul>
-                <li *ngFor="let like of likes">
-                    Liked By: {{ like.likeBy.firstName }} {{ like.likeBy.lastName }}
-                </li>
-            </ul>
-        </div>
-
-        <div class="reviews">
-            <h3>Reviews: {{ reviews.length }}</h3>
-            <ul>
-                <li *ngFor="let review of reviews">
-                    Reviewed By: {{ review.userId.firstName }} {{ review.userId.lastName }} - {{ review.content }}
-                </li>
-            </ul>
-        </div>
-
-        <div class="ratings">
-            <h3>Ratings: {{ ratings.length }}</h3>
-            <ul>
-                <li *ngFor="let rating of ratings">
-                    Rated By: {{ rating.userId }} - {{ rating.rating }} stars
-                </li>
-            </ul>
-            <h3>Average Rating: {{ avgRating }}</h3>
-        </div>
+  <div class="likes-reviews-ratings">
+    <div class="likes">
+      <h3>Likes: {{ likes.length }}</h3>
+      <ul>
+        <li *ngFor="let like of likes">
+          Liked By: {{ like.likeBy.firstName }} {{ like.likeBy.lastName }}
+        </li>
+      </ul>
     </div>
+
+    <div class="reviews">
+      <h3>Reviews: {{ reviews.length }}</h3>
+      <ul>
+        <li *ngFor="let review of reviews">
+          Reviewed By: {{ review.userId.firstName }}
+          {{ review.userId.lastName }} - {{ review.content }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="ratings">
+      <h3>Ratings: {{ ratings.length }}</h3>
+      <ul>
+        <li *ngFor="let rating of ratings">
+          Rated By: {{ rating.userId }} - {{ rating.rating }} stars
+        </li>
+      </ul>
+      <h3>Average Rating: {{ avgRating }}</h3>
+    </div>
+  </div>
 </div>

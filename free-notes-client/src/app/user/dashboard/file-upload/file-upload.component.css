@@ -17,8 +17,8 @@ label {
   font-weight: bold;
 }
 
-input[type="text"],
-input[type="file"],
+input[type='text'],
+input[type='file'],
 select {
   width: 100%;
   padding: 0.5rem;

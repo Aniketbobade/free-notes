@@ -1,18 +1,20 @@
 <app-header></app-header>
 <app-navbar></app-navbar>
 <h3>free notes as per field section</h3>
-<br>
-<br>
+<br />
+<br />
 <div>
   <form [formGroup]="getField" (ngSubmit)="searchSubject()">
     <label for="selectOption">Select a field:</label>
     <select id="selectOption" formControlName="id">
-      <option *ngFor="let field of fields" [value]="field?._id">{{ field.name }}</option>
+      <option *ngFor="let field of fields" [value]="field?._id">
+        {{ field.name }}
+      </option>
     </select>
     <button type="submit">Submit</button>
   </form>
-  <br>
-  <br>
+  <br />
+  <br />
   <div *ngIf="getSubject.length > 0">
     <h3>Subjects</h3>
     <table>
@@ -24,7 +26,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subject of getSubject" (click)="loadDocuments(subject._id)" style="cursor: pointer;">
+        <tr
+          *ngFor="let subject of getSubject"
+          (click)="loadDocuments(subject._id)"
+          style="cursor: pointer"
+        >
           <td>{{ subject.name }}</td>
           <td>{{ subject.desc }}</td>
           <td>{{ subject.tags.join(', ') }}</td>
@@ -32,9 +38,9 @@
       </tbody>
     </table>
   </div>
-  <br>
-  <br>
-  <div *ngIf="documents.length>0">
+  <br />
+  <br />
+  <div *ngIf="documents.length > 0">
     <table class="document-table">
       <thead>
         <tr>
@@ -49,12 +55,17 @@
         <tr *ngFor="let document of documents">
           <td>{{ document.name }}</td>
           <td>{{ document.desc }}</td>
-          <td><a href="{{ document.file_url }}" target="_blank">click here</a></td>
+          <td>
+            <a href="{{ document.file_url }}" target="_blank">click here</a>
+          </td>
           <td>{{ document.addedBy.email }}</td>
-          <td><button (click)="navigateToOtherPage(document._id)">click here</button></td>
+          <td>
+            <button (click)="navigateToOtherPage(document._id)">
+              click here
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  
 </div>

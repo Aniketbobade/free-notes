@@ -1,20 +1,19 @@
 .profile-container {
-    max-width: 400px;
-    margin: auto;
-  }
-  
-  .profile-container div {
-    margin-bottom: 1rem;
-  }
-  
-  .profile-container label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  .profile-container input {
-    width: 100%;
-    padding: 0.5rem;
-    box-sizing: border-box;
-  }
-  
+  max-width: 400px;
+  margin: auto;
+}
+
+.profile-container div {
+  margin-bottom: 1rem;
+}
+
+.profile-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.profile-container input {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}

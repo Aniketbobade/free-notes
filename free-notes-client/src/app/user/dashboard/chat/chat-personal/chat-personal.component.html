@@ -1,10 +1,10 @@
 <div class="chat-personal">
-    <h3>Chat with {{ userProfile.firstName }} {{userProfile.lastName}}</h3>
-    <div class="messages">
-      <div *ngFor="let message of messages">
-          {{ message.senderName }}: {{ message.content }}
-      </div>
+  <h3>Chat with {{ userProfile.firstName }} {{ userProfile.lastName }}</h3>
+  <div class="messages">
+    <div *ngFor="let message of messages">
+      {{ message.senderName }}: {{ message.content }}
     </div>
-    <input type="text" [(ngModel)]="newMessage" placeholder="Type a message...">
-    <button (click)="sendMessage()">Send</button>
   </div>
+  <input type="text" [(ngModel)]="newMessage" placeholder="Type a message..." />
+  <button (click)="sendMessage()">Send</button>
+</div>

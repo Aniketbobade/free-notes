@@ -1,35 +1,44 @@
 <div *ngFor="let group of result">
-    <h2>Subject: {{ group.subject.name }}</h2>
-    <p><strong>Description:</strong>  {{ group.subject.desc }}</p>
-    <p><strong>Tags:</strong> {{ group.subject.tags.join(', ') }}</p>
-  
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>File URL</th>
-          <th>Created At</th>
-          <th>UploadStatus</th>
-          <th>Action</th> 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let doc of group.documents">
-          <td>{{ doc.name }}</td>
-          <td>{{ doc.desc }}</td>
-          <td>
-            <a *ngIf="doc.uploadStatus === 'UPLOADED'" [href]="doc.file_url" target="_blank">View File</a>
-            <span *ngIf="doc.uploadStatus !== 'UPLOADED'">Pending Upload</span>
-          </td>  
-          <td>{{ doc.createdAt | date: 'short' }}</td>
-          <td>{{ doc.uploadStatus }}</td>
-          <td>
-            <button (click)="deleteDocument(doc._id)" [disabled]="doc.uploadStatus !== 'UPLOADED'">Delete</button>
-            <button [disabled]="doc.uploadStatus !== 'UPLOADED'">Edit</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <h2>Subject: {{ group.subject.name }}</h2>
+  <p><strong>Description:</strong> {{ group.subject.desc }}</p>
+  <p><strong>Tags:</strong> {{ group.subject.tags.join(', ') }}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>File URL</th>
+        <th>Created At</th>
+        <th>UploadStatus</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of group.documents">
+        <td>{{ doc.name }}</td>
+        <td>{{ doc.desc }}</td>
+        <td>
+          <a
+            *ngIf="doc.uploadStatus === 'UPLOADED'"
+            [href]="doc.file_url"
+            target="_blank"
+            >View File</a
+          >
+          <span *ngIf="doc.uploadStatus !== 'UPLOADED'">Pending Upload</span>
+        </td>
+        <td>{{ doc.createdAt | date: 'short' }}</td>
+        <td>{{ doc.uploadStatus }}</td>
+        <td>
+          <button
+            (click)="deleteDocument(doc._id)"
+            [disabled]="doc.uploadStatus !== 'UPLOADED'"
+          >
+            Delete
+          </button>
+          <button [disabled]="doc.uploadStatus !== 'UPLOADED'">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

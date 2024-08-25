@@ -1,8 +1,11 @@
 <nav>
-    <ul>
-      <li><a routerLink="/login">{{'LOGIN'|translate}}</a></li>
-      <li><a routerLink="/sign-up">{{'SIGNUP'|translate}}</a></li>
-      <li><a *ngIf="checkLoggedIn()" routerLink="/dashboard">Dashboard</a></li>
-    </ul>
-  </nav>
-  
+  <ul>
+    <li>
+      <a routerLink="/login">{{ 'LOGIN' | translate }}</a>
+    </li>
+    <li>
+      <a routerLink="/sign-up">{{ 'SIGNUP' | translate }}</a>
+    </li>
+    <li><a *ngIf="checkLoggedIn()" routerLink="/dashboard">Dashboard</a></li>
+  </ul>
+</nav>

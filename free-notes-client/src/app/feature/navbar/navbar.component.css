@@ -1,39 +1,38 @@
 /* Styles for the navigation bar */
 nav {
-    background-color: #333; /* Background color of the navbar */
-    padding: 10px 20px; /* Padding around the navbar */
-  }
-  
-  /* Styles for the unordered list inside the navbar */
-  nav ul {
-    list-style-type: none; /* Remove bullet points */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    display: flex; /* Use flexbox for horizontal layout */
-    justify-content: flex-end; /* Align items to the right */
-  }
-  
-  /* Styles for each list item inside the navbar */
-  nav ul li {
-    margin-left: 20px; /* Space between each item */
-  }
-  
-  /* Styles for the links inside the navbar */
-  nav ul li a {
-    color: white; /* Text color */
-    text-decoration: none; /* Remove underline */
-    padding: 8px 16px; /* Padding inside each link */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  /* Hover effect for the links */
-  nav ul li a:hover {
-    background-color: #555; /* Darker background color on hover */
-  }
-  
-  /* Optional: active link styles */
-  nav ul li a.router-link-active {
-    background-color: #444; /* Different background color for active link */
-  }
-  
+  background-color: #333; /* Background color of the navbar */
+  padding: 10px 20px; /* Padding around the navbar */
+}
+
+/* Styles for the unordered list inside the navbar */
+nav ul {
+  list-style-type: none; /* Remove bullet points */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
+  display: flex; /* Use flexbox for horizontal layout */
+  justify-content: flex-end; /* Align items to the right */
+}
+
+/* Styles for each list item inside the navbar */
+nav ul li {
+  margin-left: 20px; /* Space between each item */
+}
+
+/* Styles for the links inside the navbar */
+nav ul li a {
+  color: white; /* Text color */
+  text-decoration: none; /* Remove underline */
+  padding: 8px 16px; /* Padding inside each link */
+  border-radius: 4px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for the links */
+nav ul li a:hover {
+  background-color: #555; /* Darker background color on hover */
+}
+
+/* Optional: active link styles */
+nav ul li a.router-link-active {
+  background-color: #444; /* Different background color for active link */
+}

@@ -1,37 +1,37 @@
 /* Basic styles for document details */
 .document-details {
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px;
 }
 
 /* Styles for likes, reviews, and ratings */
 .likes-reviews-ratings {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .likes,
 .reviews,
 .ratings {
-    flex: 1;
-    margin-right: 20px;
+  flex: 1;
+  margin-right: 20px;
 }
 
 h3 {
-    margin-top: 10px;
-    font-size: 18px;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 li {
-    margin-bottom: 5px;
-    font-size: 16px;
+  margin-bottom: 5px;
+  font-size: 16px;
 }
 
 /* Additional styles as needed */

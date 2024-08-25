@@ -1,27 +1,31 @@
 <form [formGroup]="fileUploadForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="fileName">File Name:</label>
-    <input type="text" id="fileName" formControlName="fileName">
+    <input type="text" id="fileName" formControlName="fileName" />
   </div>
   <div>
     <label for="description">Description:</label>
-    <input type="text" id="description" formControlName="description">
+    <input type="text" id="description" formControlName="description" />
   </div>
   <div>
     <label for="field">Field:</label>
     <select id="field" formControlName="field" (change)="onFieldChange()">
-      <option *ngFor="let field of fields" [value]="field?._id">{{ field?.name }}</option>
+      <option *ngFor="let field of fields" [value]="field?._id">
+        {{ field?.name }}
+      </option>
     </select>
   </div>
   <div>
     <label for="subject">Subject:</label>
     <select id="subject" formControlName="subject">
-      <option *ngFor="let subject of subjects" [value]="subject?._id">{{ subject?.name }}</option>
+      <option *ngFor="let subject of subjects" [value]="subject?._id">
+        {{ subject?.name }}
+      </option>
     </select>
   </div>
   <div>
     <label for="document">File:</label>
-    <input type="file" id="document" (change)="onFileChange($event)">
+    <input type="file" id="document" (change)="onFileChange($event)" />
   </div>
   <div>
     <button type="submit" [disabled]="!fileUploadForm.valid">Submit</button>

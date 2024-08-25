@@ -1,20 +1,42 @@
 <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
-    </div>
-    <div>
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" required>
-    </div>
-    <div>
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" required>
-    </div>
-    <div>
-      <label for="profilePhoto">Profile Photo:</label>
-      <input type="file" id="profilePhoto" name="profilePhoto" (change)="onFileSelected($event)">
-    </div>
-    <button type="submit">Submit</button>
-  </form>
-  
+  <div>
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="user.email"
+      required
+    />
+  </div>
+  <div>
+    <label for="firstName">First Name:</label>
+    <input
+      type="text"
+      id="firstName"
+      name="firstName"
+      [(ngModel)]="user.firstName"
+      required
+    />
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input
+      type="text"
+      id="lastName"
+      name="lastName"
+      [(ngModel)]="user.lastName"
+      required
+    />
+  </div>
+  <div>
+    <label for="profilePhoto">Profile Photo:</label>
+    <input
+      type="file"
+      id="profilePhoto"
+      name="profilePhoto"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+  <button type="submit">Submit</button>
+</form>

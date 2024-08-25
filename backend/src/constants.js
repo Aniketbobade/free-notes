@@ -1,4 +1,4 @@
 module.exports = {
-    userStatus:["INVITED","ACTIVE","INACTIVE","REGISTER"],
-    userType:["ADMIN","MODERATOR","USER"],
+  userStatus: ['INVITED', 'ACTIVE', 'INACTIVE', 'REGISTER'],
+  userType: ['ADMIN', 'MODERATOR', 'USER'],
 }
