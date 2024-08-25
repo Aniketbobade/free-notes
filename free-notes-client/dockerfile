@@ -6,9 +6,10 @@ WORKDIR /dist/src/app
 
 RUN npm cache clean --force
 # Copy package.json and package-lock.json files
-COPY . .
+COPY package*.json ./
 RUN npm install
-RUN npm run build 
+COPY . .
+RUN npm run build:dev
 
 # Stage 2: Serve the app with nginx server
 FROM nginx:latest AS ngi
